@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0F172A">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Deepfake Detective - Spot the Synthetic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="game-header">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-icon">🔍</span>
+                    <h1>Deepfake <span class="highlight">Detective</span></h1>
+                </div>
+            </div>
+            <div class="header-center">
+                <div class="round-badge">
+                    <span>Round</span>
+                    <span id="round-counter">1/8</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="score-display">
+                    <span class="score-label">Score</span>
+                    <span id="score" class="score-value">0</span>
+                </div>
+                <div class="lives-display">
+                    <span class="lives-label">Lives</span>
+                    <span id="lives" class="lives-value">❤️❤️❤️</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Detection Tools Bar -->
+        <div id="tools-bar" class="tools-bar">
+            <div class="tool" data-tool="hands">
+                <span class="tool-icon">✋</span>
+                <span class="tool-name">Check Hands</span>
+                <span class="tool-count" id="hands-count">2</span>
+            </div>
+            <div class="tool" data-tool="lighting">
+                <span class="tool-icon">💡</span>
+                <span class="tool-name">Lighting</span>
+                <span class="tool-count" id="lighting-count">2</span>
+            </div>
+            <div class="tool" data-tool="background">
+                <span class="tool-icon">🖼️</span>
+                <span class="tool-name">Background</span>
+                <span class="tool-count" id="background-count">2</span>
+            </div>
+            <div class="tool" data-tool="texture">
+                <span class="tool-icon">🔍</span>
+                <span class="tool-name">Skin Texture</span>
+                <span class="tool-count" id="texture-count">2</span>
+            </div>
+            <div class="tool" data-tool="metadata">
+                <span class="tool-icon">📊</span>
+                <span class="tool-name">Metadata</span>
+                <span class="tool-count" id="metadata-count">1</span>
+            </div>
+        </div>
+
+        <!-- Main Game Area -->
+        <main id="game-board">
+            <!-- Content dynamically rendered -->
+        </main>
+
+        <!-- Controls -->
+        <nav id="controls" class="game-controls">
+            <button id="prev-btn" class="btn btn-secondary" disabled>
+                <span>Previous</span>
+            </button>
+            <button id="help-btn" class="btn btn-help">?</button>
+            <button id="next-btn" class="btn btn-primary" disabled>
+                <span>Next Case</span>
+                <span class="btn-icon">→</span>
+            </button>
+        </nav>
+
+        <!-- Help Modal -->
+        <div id="help-modal" class="modal hidden">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <h2>How to Play Deepfake Detective</h2>
+                <div class="help-sections">
+                    <div class="help-section">
+                        <h3>🎯 Goal</h3>
+                        <p>Identify which media is AI-generated (synthetic) and which is authentic (real).</p>
+                    </div>
+                    <div class="help-section">
+                        <h3>🔍 Detection Tools</h3>
+                        <ul>
+                            <li><strong>Check Hands:</strong> AI often struggles with fingers (extra, merged, or unnatural)</li>
+                            <li><strong>Lighting:</strong> Inconsistent light sources, unnatural shadows</li>
+                            <li><strong>Background:</strong> Blurry, warped, or physically impossible elements</li>
+                            <li><strong>Skin Texture:</strong> Over-smooth, waxy, or inconsistent skin</li>
+                            <li><strong>Metadata:</strong> Technical information about the file (limited uses!)</li>
+                        </ul>
+                    </div>
+                    <div class="help-section">
+                        <h3>⚠️ Lives System</h3>
+                        <p>You have 3 lives. Lose a life for each incorrect judgment. Game ends when lives reach zero.</p>
+                    </div>
+                    <div class="help-section">
+                        <h3>🏆 Scoring</h3>
+                        <p>+100 points for correct identification without using tools<br>
+                        +50 points for correct identification with tools<br>
+                        Bonus points for unused tools at the end of a round</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

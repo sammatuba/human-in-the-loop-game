@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hallucination Hunt - Spot the Fake Facts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="game-header">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-icon">👁️</span>
+                    <h1>Hallucination <span class="highlight">Hunt</span></h1>
+                </div>
+            </div>
+            <div class="header-center">
+                <div class="confidence-meter">
+                    <span class="meter-label">Confidence</span>
+                    <div class="meter-bar">
+                        <div id="confidence-fill" class="meter-fill" style="width: 50%"></div>
+                    </div>
+                    <span id="confidence-value" class="meter-value">Uncertain</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="score-display">
+                    <span class="score-label">Score</span>
+                    <span id="score" class="score-value">0</span>
+                </div>
+                <div class="round-counter">
+                    <span id="round-num">1</span>/<span id="round-total">10</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Verification Tools -->
+        <div class="tools-bar">
+            <div class="tool" data-tool="citations">
+                <span class="tool-icon">📚</span>
+                <span class="tool-name">Check Citations</span>
+                <span class="tool-count" id="citations-count">3</span>
+            </div>
+            <div class="tool" data-tool="facts">
+                <span class="tool-icon">🔎</span>
+                <span class="tool-name">Fact Check</span>
+                <span class="tool-count" id="facts-count">3</span>
+            </div>
+            <div class="tool" data-tool="sources">
+                <span class="tool-icon">🔗</span>
+                <span class="tool-name">Verify Sources</span>
+                <span class="tool-count" id="sources-count">2</span>
+            </div>
+            <div class="tool" data-tool="logic">
+                <span class="tool-icon">🧠</span>
+                <span class="tool-name">Logic Check</span>
+                <span class="tool-count" id="logic-count">2</span>
+            </div>
+        </div>
+
+        <!-- Main Game Area -->
+        <main id="game-board">
+            <!-- Content dynamically rendered -->
+        </main>
+
+        <!-- Controls -->
+        <nav id="controls" class="game-controls">
+            <button id="help-btn" class="btn btn-help">?</button>
+            <div class="judgment-area">
+                <button class="judgment-btn trust" onclick="makeJudgment('trust')">
+                    <span>✓ TRUST</span>
+                    <small>Accurate</small>
+                </button>
+                <button class="judgment-btn hallucination" onclick="makeJudgment('hallucination')">
+                    <span>⚠️ HALLUCINATION</span>
+                    <small>Fake/False</small>
+                </button>
+                <button class="judgment-btn unverifiable" onclick="makeJudgment('unverifiable')">
+                    <span>? UNVERIFIABLE</span>
+                    <small>Can't confirm</small>
+                </button>
+            </div>
+            <button id="next-btn" class="btn btn-primary" disabled>
+                <span>Next</span>
+                <span class="btn-icon">→</span>
+            </button>
+        </nav>
+
+        <!-- Help Modal -->
+        <div id="help-modal" class="modal hidden">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <h2>How to Play Hallucination Hunt</h2>
+                <div class="help-sections">
+                    <div class="help-section">
+                        <h3>🎯 Goal</h3>
+                        <p>Identify whether AI-generated content is accurate, hallucinated (fabricated), or unverifiable.</p>
+                    </div>
+                    <div class="help-section">
+                        <h3>🔍 Verification Tools</h3>
+                        <ul>
+                            <li><strong>Check Citations:</strong> Verify if cited sources exist and say what they claim</li>
+                            <li><strong>Fact Check:</strong> Cross-reference specific claims against known facts</li>
+                            <li><strong>Verify Sources:</strong> Check if referenced experts/institutions are real</li>
+                            <li><strong>Logic Check:</strong> Look for internal contradictions or impossibilities</li>
+                        </ul>
+                    </div>
+                    <div class="help-section">
+                        <h3>📊 Judgment Options</h3>
+                        <ul>
+                            <li><strong>Trust:</strong> Content appears accurate and verifiable</li>
+                            <li><strong>Hallucination:</strong> Contains fabricated facts, citations, or impossibilities</li>
+                            <li><strong>Unverifiable:</strong> Cannot be confirmed or denied with available information</li>
+                        </ul>
+                    </div>
+                    <div class="help-section">
+                        <h3>⚡ Red Flags</h3>
+                        <ul>
+                            <li>Specific statistics without sources</li>
+                            <li>Named experts you can't verify</li>
+                            <li>Perfect, confident answers about uncertain topics</li>
+                            <li>Contradictions within the same response</li>
+                            <li>URLs that don't exist</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
